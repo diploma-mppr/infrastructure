@@ -30,8 +30,6 @@ services:
     restart: always
     ports:
       - '8000:8000'
-    volumes:
-      - ./backConfig:/project/backConfig
     depends_on:
       - adminer
 
