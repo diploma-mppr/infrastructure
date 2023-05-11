@@ -26,7 +26,7 @@ services:
       - db
 
   backend:
-    image: yutfut/back:${BACK_VERSION}
+    image: yutfut/back_mppr:${BACK_MPPR_VERSION}
     restart: always
     ports:
       - '8000:8000'
