@@ -60,28 +60,28 @@ services:
     depends_on:
       - nginx
 
-    prometheus:
-      image: prom/prometheus:latest
-      volumes:
-        - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
-      command:
-        - '--config.file=/etc/prometheus/prometheus.yaml'
-      ports:
-        - '9090:9090'
-      depends_on:
-        - node-exporter
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    ports:
+      - '9090:9090'
+    depends_on:
+      - node-exporter
 
-    grafana:
-      image: grafana/grafana-enterprise:latest
-      links:
-        - "prometheus:prometheus"
-      ports:
-        - "3000:3000"
-      user: '1000'
-      volumes:
-        - ./gfdata:/var/lib/grafana
-      environment:
-        - GF_SECURITY_ADMIN_USER=yutfut
-        - GF_SECURITY_ADMIN_PASSWORD=yutfut
-      depends_on:
-        - prometheus
+  grafana:
+    image: grafana/grafana-enterprise:latest
+    links:
+      - "prometheus:prometheus"
+    ports:
+      - "3000:3000"
+    user: '1000'
+    volumes:
+      - ./gfdata:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=yutfut
+      - GF_SECURITY_ADMIN_PASSWORD=yutfut
+    depends_on:
+      - prometheus
