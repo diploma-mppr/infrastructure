@@ -36,10 +36,13 @@ services:
   nginx:
     image: nginx:latest
     ports:
+      - "443:443"
       - "80:80"
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./build:/var/html
+      - ./etc/letsencrypt/live/study-ai.online/fullchain.pem:/etc/ssl
+      - ./etc/letsencrypt/live/study-ai.online/privkey.pem:/etc/ssl
     depends_on:
       - backend
 
